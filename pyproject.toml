@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=42"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "agent-pipeline"
+version = "0.1.0"
+description = "5-agent AI coding pipeline powered by Claude"
+requires-python = ">=3.8"
+dependencies = [
+    "anthropic>=0.40.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.scripts]
+agent-pipeline = "run_pipeline:main"
+
+[tool.setuptools]
+py-modules = ["run_pipeline"]
