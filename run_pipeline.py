@@ -53,8 +53,9 @@ BRANCH_INFO_FILE = ".agent-pipeline/.branch-info"
 # ---------------------------------------------------------------------------
 def git_run(d,*a):
     try:
-        r=subprocess.run(["git"]+list(a),cwd=d,capture_output=True,text=True,timeout=30)
-        return r.returncode==0,r.stdout.strip()
+        r=subprocess.run(["git"]+list(a),cwd=d,capture_output=True,
+            encoding="utf-8",errors="replace",timeout=60)
+        return r.returncode==0,(r.stdout or "").strip()
     except FileNotFoundError: return False,"Git not installed"
     except subprocess.TimeoutExpired: return False,"Timeout"
 
